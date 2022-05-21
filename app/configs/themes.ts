@@ -1,4 +1,5 @@
-import { ColorScheme, extendTheme } from "@vechaiui/react";
+import type { ColorScheme } from "@vechaiui/react";
+import { extendTheme } from "@vechaiui/react";
 import { colors } from "@vechaiui/react";
 
 export const day: ColorScheme = {
@@ -13,7 +14,7 @@ export const day: ColorScheme = {
       foreground: colors.gray["100"],
       muted: colors.gray["300"],
     },
-    primary: colors.teal,
+    primary: colors.green,
     neutral: colors.gray,
   },
 };
@@ -30,7 +31,7 @@ export const night: ColorScheme = {
       foreground: colors.coolGray["100"],
       muted: colors.coolGray["300"],
     },
-    primary: colors.cyan,
+    primary: colors.green,
     neutral: colors.coolGray,
   },
 };
