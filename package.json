@@ -13,6 +13,7 @@
     "dev:remix": "remix dev"
   },
   "dependencies": {
+    "@kontenbase/sdk": "0.8.10",
     "@remix-run/node": "^1.5.1",
     "@remix-run/react": "^1.5.1",
     "@remix-run/vercel": "^1.5.1",
