@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .stack {
+    @apply flex flex-col;
+  }
+
+  .button-group {
+    @apply flex gap-2;
+  }
+}

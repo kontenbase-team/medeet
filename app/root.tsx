@@ -7,9 +7,10 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import { VechaiProvider, Button } from "@vechaiui/react";
+import { VechaiProvider } from "@vechaiui/react";
+import { vechaiTheme } from "~/configs";
 
-import styles from "./styles/app.css";
+import styles from "~/styles/app.css";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
@@ -30,7 +31,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <VechaiProvider>
+        <VechaiProvider theme={vechaiTheme} colorScheme="night">
           <div className="container mx-auto">
             <Outlet />
           </div>
