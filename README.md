@@ -65,7 +65,6 @@ There is a very similar tutorial (Writter, a simple Twitter clone) that you can 
   - `createdAt`
   - `createdBy`
 - Customize `users` service to have:
-  - `handle`
   - `createdAt`
   - `createdBy`
 - Test to register new User

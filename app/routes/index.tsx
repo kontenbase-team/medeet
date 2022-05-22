@@ -1,5 +1,3 @@
-import { Link } from "@remix-run/react";
-import { Button } from "@vechaiui/react";
 import { LinkButton } from "~/components";
 
 export default function Index() {

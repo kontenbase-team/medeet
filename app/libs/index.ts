@@ -1,2 +1,2 @@
-export * from "./kontenbase";
+export * from "./kontenbase.server";
 export * from "./clsx";
