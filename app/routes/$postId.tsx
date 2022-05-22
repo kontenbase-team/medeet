@@ -2,7 +2,11 @@ import { ActionFunction, LoaderFunction, redirect } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, useLoaderData, useTransition } from "@remix-run/react";
 import { Button } from "@vechaiui/react";
-import { kontenbaseApiUrl, kontenbaseServer } from "~/libs";
+import {
+  getCompleteDateTime,
+  kontenbaseApiUrl,
+  kontenbaseServer,
+} from "~/libs";
 import { authenticator } from "~/services";
 
 export const loader: LoaderFunction = async ({ request, params }) => {
@@ -70,7 +74,8 @@ export default function PostId() {
         <div className="stack max-w-lg gap-4">
           <h1>{post.title}</h1>
           <p>
-            Posted by {post.createdBy.firstName} at {post.createdAt}
+            Posted by {post.createdBy.firstName} on{" "}
+            {getCompleteDateTime(post.createdAt)}
           </p>
           <div>
             <p className="break-words	text-2xl">{post.content}</p>

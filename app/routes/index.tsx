@@ -1,7 +1,7 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
-import { kontenbaseServer } from "~/libs";
+import { getCompleteDateTime, kontenbaseServer } from "~/libs";
 import { authenticator } from "~/services";
 import type { Post } from "~/types";
 
@@ -37,7 +37,8 @@ export default function Index() {
               <div className="stack gap-2 rounded-base p-4 hover:bg-neutral-800">
                 <h3>{post.title}</h3>
                 <p>
-                  by {post.createdBy.firstName} at {post.createdAt}
+                  by {post.createdBy.firstName} on{" "}
+                  {getCompleteDateTime(post.createdAt)}
                 </p>
               </div>
             </Link>
