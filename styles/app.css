@@ -19,6 +19,18 @@
   a.button {
     @apply text-white no-underline;
   }
+
+  h1 {
+    @apply text-5xl font-bold;
+  }
+
+  h2 {
+    @apply text-3xl font-bold;
+  }
+
+  h3 {
+    @apply text-xl font-bold;
+  }
 }
 
 @layer components {
@@ -38,5 +50,6 @@
 
   .prose-config {
     @apply prose dark:prose-invert;
+    @apply prose-pre:text-xs;
   }
 }

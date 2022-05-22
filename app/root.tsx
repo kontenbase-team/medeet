@@ -1,4 +1,9 @@
-import type { LinksFunction, MetaFunction } from "@remix-run/node";
+import {
+  json,
+  LinksFunction,
+  LoaderFunction,
+  MetaFunction,
+} from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -6,11 +11,13 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
 import { VechaiProvider } from "@vechaiui/react";
 import { vechaiTheme } from "~/configs";
 
 import styles from "~/styles/app.css";
+import { NavigationBar } from "~/components";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
@@ -23,7 +30,17 @@ export const meta: MetaFunction = () => ({
   description: "Medium + Twitter",
 });
 
+export const loader: LoaderFunction = async ({ request }) => {
+  const user = null;
+
+  return json({
+    user,
+  });
+};
+
 export default function App() {
+  const data = useLoaderData();
+
   return (
     <html lang="en">
       <head>
@@ -33,6 +50,7 @@ export default function App() {
       <body>
         <VechaiProvider theme={vechaiTheme} colorScheme="night">
           <div className="container mx-auto">
+            <NavigationBar user={data?.user} />
             <Outlet />
           </div>
         </VechaiProvider>
