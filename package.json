@@ -21,8 +21,12 @@
     "@vechaiui/core": "0.6.0",
     "@vechaiui/react": "0.2.2",
     "@vercel/node": "^1.15.2",
+    "dayjs": "1.11.2",
+    "invariant": "2.2.4",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "remix-auth": "3.2.2",
+    "remix-auth-form": "1.1.2"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.5.1",
