@@ -1,3 +1,5 @@
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   content: [
     "./app/**/*.{jsx,tsx}",
@@ -5,7 +7,11 @@ module.exports = {
   ],
   darkMode: "class", // 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        red: colors.red,
+      },
+    },
   },
   variants: {
     extend: {},
@@ -13,6 +19,9 @@ module.exports = {
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/forms"),
-    require("@vechaiui/core"),
+    require("@vechaiui/core")({
+      cssBase: true,
+      colors: ["red"],
+    }),
   ],
 };

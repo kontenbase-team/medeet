@@ -1,7 +1,8 @@
-import type { LoaderFunction } from "@remix-run/node";
+import { ActionFunction, LoaderFunction, redirect } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { kontenbaseServer } from "~/libs";
+import { Form, useLoaderData, useTransition } from "@remix-run/react";
+import { Button } from "@vechaiui/react";
+import { kontenbaseApiUrl, kontenbaseServer } from "~/libs";
 import { authenticator } from "~/services";
 
 export const loader: LoaderFunction = async ({ request, params }) => {
@@ -16,12 +17,46 @@ export const loader: LoaderFunction = async ({ request, params }) => {
   return json({ user, post, error });
 };
 
+export const action: ActionFunction = async ({ request, params }) => {
+  const user = await authenticator.isAuthenticated(request);
+  const headers = new Headers({ Authorization: `Bearer ${user?.token}` });
+  const form = await request.formData();
+
+  // Find about this Post, especially the owner
+  const { data: post, error: postError } = await kontenbaseServer
+    .service("posts")
+    .getById(params.postId as string);
+
+  if (postError) return json({ error: postError }, { status: 400 });
+
+  // Only the owner of the Post can do something
+  const isOwned = user?._id === post?.createdBy?._id;
+  const isMethodDelete = form.get("_method") === "delete";
+
+  if (isOwned && isMethodDelete) {
+    try {
+      const url = `${kontenbaseApiUrl}/posts/${params.postId}`;
+      const response = await fetch(url, { headers, method: "DELETE" });
+      await response.json();
+      return redirect(`/`, { headers });
+    } catch (error) {
+      return json({ user, error }, { status: 404 });
+    }
+  }
+
+  return null;
+};
+
 export default function PostId() {
   const loaderData = useLoaderData();
+  const transition = useTransition();
+
   const { user, post, error } = loaderData;
+  const postOwner = post?.createdBy;
+  const isOwned = user?._id === postOwner?._id;
 
   return (
-    <div className="cstack">
+    <div className="stack gap-4">
       {post && !error && (
         <div className="stack max-w-lg gap-4">
           <h1>{post.title}</h1>
@@ -42,7 +77,28 @@ export default function PostId() {
         </div>
       )}
 
-      {/* <pre>{JSON.stringify(loaderData, null, 2)}</pre> */}
+      {isOwned && (
+        <Form method="post">
+          <input type="hidden" name="_method" value="delete" />
+
+          <Button
+            type="submit"
+            variant="solid"
+            color="red"
+            size="xs"
+            loading={transition.state === "submitting"}
+            loadingText={
+              transition.state === "submitting"
+                ? "Deleting..."
+                : transition.state === "loading"
+                ? "Deleted!"
+                : "Delete"
+            }
+          >
+            Delete Post
+          </Button>
+        </Form>
+      )}
     </div>
   );
 }
