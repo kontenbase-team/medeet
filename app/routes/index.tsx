@@ -4,15 +4,21 @@ import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 import { kontenbaseServer } from "~/libs";
+import { authenticator } from "~/services";
 
-export const loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async ({ request }) => {
   const { data, error } = await kontenbaseServer.service("posts").find();
+  const user = await authenticator.isAuthenticated(request);
 
   if (error) {
     return json({ ok: false, error });
   }
 
-  return json({ ok: true, posts: data });
+  return json({
+    ok: true,
+    user,
+    posts: data,
+  });
 };
 
 export default function Index() {
