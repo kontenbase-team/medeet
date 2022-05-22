@@ -1,21 +1,20 @@
 import { Link } from "@remix-run/react";
 import { Button } from "@vechaiui/react";
+import { LinkButton } from "~/components";
 
 export default function Index() {
   return (
     <div className="stack gap-4">
-      <h1 className="text-3xl font-bold">Medeet</h1>
-      <p>Medium + Twitter</p>
-      <p>
-        Medeet but not <i>pelit</i>.
-      </p>
-      <Link to="/posts">See All Posts</Link>
+      <div className="prose-config">
+        <h1>Medeet</h1>
+        <p>Medium + Twitter = Medeet</p>
+      </div>
 
       <div className="button-group">
-        <Button variant="solid" color="primary">
-          Register
-        </Button>
-        <Button color="primary">Login</Button>
+        <LinkButton to="/login" variant="outline">
+          Login
+        </LinkButton>
+        <LinkButton to="/register">Register</LinkButton>
       </div>
     </div>
   );

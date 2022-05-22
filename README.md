@@ -20,8 +20,8 @@ For simplicity of this demo, these are the only features.
 - View single Post in page
 - Authentication/Authorization
   - Register
-  - Log in
-  - Log out
+  - Login
+  - Logout
   - Permission of ownership aka authorization
 - Create a new Post
 - Delete owned Post
@@ -69,7 +69,7 @@ There is a very similar tutorial (Writter, a simple Twitter clone) that you can 
   - `createdAt`
   - `createdBy`
 - Test to register new User
-- Test to log in to User
+- Test to login to User
 - Test to create a new Post
 - Test to get all Posts
 - Test to get one Post by ID

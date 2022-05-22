@@ -21,6 +21,7 @@
     "@vechaiui/core": "0.6.0",
     "@vechaiui/react": "0.2.2",
     "@vercel/node": "^1.15.2",
+    "clsx": "1.1.1",
     "dayjs": "1.11.2",
     "invariant": "2.2.4",
     "react": "^17.0.2",
