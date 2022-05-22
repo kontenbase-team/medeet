@@ -30,19 +30,20 @@ export default function Index() {
       </div>
 
       <div className="stack max-w-lg gap-8 divide-slate-400/25">
-        {posts.map((post: Post) => {
-          return (
-            <Link className="hover:no-underline" key={post._id} to={post._id}>
-              <div className="stack gap-2 rounded-base p-4 hover:bg-neutral-800">
-                <h3>{post.title}</h3>
-                <p className="font-normal">
-                  by {getUserName(post.createdBy)} on{" "}
-                  {getCompleteDateTime(post.createdAt)}
-                </p>
-              </div>
-            </Link>
-          );
-        })}
+        {posts &&
+          posts.map((post: Post) => {
+            return (
+              <Link className="hover:no-underline" key={post._id} to={post._id}>
+                <div className="stack gap-2 rounded-base p-4 hover:bg-neutral-800">
+                  <h3>{post.title}</h3>
+                  <p className="font-normal">
+                    by {getUserName(post.createdBy)} on{" "}
+                    {getCompleteDateTime(post.createdAt)}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
       </div>
     </div>
   );
