@@ -4,6 +4,7 @@ import { Link, useLoaderData } from "@remix-run/react";
 import { getCompleteDateTime, kontenbaseServer } from "~/libs";
 import { authenticator } from "~/services";
 import type { Post } from "~/types";
+import { getUserName } from "~/utils";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const { data: posts, error } = await kontenbaseServer.service("posts").find();
@@ -37,7 +38,7 @@ export default function Index() {
               <div className="stack gap-2 rounded-base p-4 hover:bg-neutral-800">
                 <h3>{post.title}</h3>
                 <p>
-                  by {post.createdBy.firstName} on{" "}
+                  by {getUserName(post.createdBy)} on{" "}
                   {getCompleteDateTime(post.createdAt)}
                 </p>
               </div>

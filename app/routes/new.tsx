@@ -14,6 +14,7 @@ import {
 } from "@vechaiui/react";
 import { kontenbaseApiUrl } from "~/libs";
 import { authenticator } from "~/services";
+import { getUserName } from "~/utils";
 
 export const meta: MetaFunction = () => ({
   title: "Create a new Medeet post",
@@ -55,14 +56,13 @@ export const loader: LoaderFunction = async ({ request }) => {
 export default function New() {
   const loaderData = useLoaderData();
   const transition = useTransition();
+  const { user } = loaderData;
 
   return (
     <div className="stack gap-8">
       <h1>Create new post</h1>
 
-      <p>
-        Author: {loaderData?.user?.firstName} {loaderData?.user?.lastName}
-      </p>
+      <p>Will be posted by {getUserName(user)}</p>
 
       <Form method="post" action="/new">
         <div className="stack max-w-md gap-4">

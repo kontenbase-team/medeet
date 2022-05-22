@@ -1,4 +1,5 @@
-import { ActionFunction, LoaderFunction, redirect } from "@remix-run/node";
+import type { ActionFunction, LoaderFunction } from "@remix-run/node";
+import { redirect } from "@remix-run/node";
 import { json } from "@remix-run/node";
 import { Form, useLoaderData, useTransition } from "@remix-run/react";
 import { Button } from "@vechaiui/react";
@@ -8,6 +9,7 @@ import {
   kontenbaseServer,
 } from "~/libs";
 import { authenticator } from "~/services";
+import { getUserName } from "~/utils";
 
 export const loader: LoaderFunction = async ({ request, params }) => {
   const user = await authenticator.isAuthenticated(request);
@@ -74,7 +76,7 @@ export default function PostId() {
         <div className="stack max-w-lg gap-4">
           <h1>{post.title}</h1>
           <p>
-            Posted by {post.createdBy.firstName} on{" "}
+            Posted by {getUserName(post.createdBy)} on{" "}
             {getCompleteDateTime(post.createdAt)}
           </p>
           <div>

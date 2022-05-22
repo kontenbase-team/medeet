@@ -15,7 +15,7 @@ export const meta: MetaFunction = () => {
 };
 
 export const action: ActionFunction = async ({ request }) => {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
+  await new Promise((resolve) => setTimeout(resolve, 100));
 
   await authenticator.logout(request, { redirectTo: "/" });
 };
