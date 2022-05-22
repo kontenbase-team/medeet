@@ -38,8 +38,6 @@ export const action: ActionFunction = async ({ request }) => {
 
     const data = await response.json();
 
-    console.log({ data });
-
     return redirect(`/${data._id}`, { headers });
   } catch (error) {
     return json({ error }, { status: 400 });

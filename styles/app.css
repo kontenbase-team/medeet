@@ -51,5 +51,6 @@
   .prose-config {
     @apply prose dark:prose-invert;
     @apply prose-pre:text-xs;
+    @apply whitespace-nowrap;
   }
 }
