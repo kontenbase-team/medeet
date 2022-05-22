@@ -31,7 +31,7 @@ export const action: ActionFunction = async ({ request, params }) => {
   // Find about this Post, especially the owner
   const { data: post, error: postError } = await kontenbaseServer
     .service("posts")
-    .getById(params.postId as string);
+    .getById(params?.postId as string);
 
   if (postError) return json({ error: postError }, { status: 400 });
 
@@ -41,20 +41,16 @@ export const action: ActionFunction = async ({ request, params }) => {
   const isMethodEdit = form.get("_method") === "edit";
 
   if (isOwned && isMethodDelete) {
-    try {
-      const url = `${kontenbaseApiUrl}/posts/${params.postId}`;
-      const response = await fetch(url, { headers, method: "DELETE" });
-      await response.json();
-      return redirect(`/`, { headers });
-    } catch (error) {
-      return json({ user, error }, { status: 404 });
-    }
+    const url = `${kontenbaseApiUrl}/posts/${params?.postId}`;
+    const response = await fetch(url, { headers, method: "DELETE" });
+    await response.json();
+    return redirect(`/`, { headers });
   }
 
   if (isOwned && isMethodEdit) {
-    return redirect(`/${params.postId}/edit`, { headers });
+    return redirect(`/${params?.postId}/edit`, { headers });
 
-    // const url = `${kontenbaseApiUrl}/posts/${params.postId}`;
+    // const url = `${kontenbaseApiUrl}/posts/${params?.postId}`;
     // const response = await fetch(url, { headers, method: "PATCH" });
     // const data = await response.json();
   }
