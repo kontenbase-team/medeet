@@ -21,7 +21,22 @@ import { NavigationBar } from "~/components";
 import { authenticator } from "~/services";
 
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: styles }];
+  const fontFamilies = `family=Archivo:wght@400;700;900`;
+
+  return [
+    {
+      rel: "stylesheet",
+      href: styles,
+    },
+    {
+      href: "https://fontbit.io",
+      rel: "preconnect",
+    },
+    {
+      href: `https://fontbit.io/css2?${fontFamilies}&display=swap`,
+      rel: "stylesheet",
+    },
+  ];
 };
 
 export const meta: MetaFunction = () => ({

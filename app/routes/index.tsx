@@ -35,7 +35,7 @@ export default function Index() {
             <Link className="hover:no-underline" key={post._id} to={post._id}>
               <div className="stack gap-2 rounded-base p-4 hover:bg-neutral-800">
                 <h3>{post.title}</h3>
-                <p>
+                <p className="font-normal">
                   by {getUserName(post.createdBy)} on{" "}
                   {getCompleteDateTime(post.createdAt)}
                 </p>

@@ -22,7 +22,6 @@ export const meta: MetaFunction = () => ({
 
 export const action: ActionFunction = async ({ request }) => {
   const user = await authenticator.isAuthenticated(request);
-  console.log({ user });
 
   const headers = new Headers({ Authorization: `Bearer ${user?.token}` });
 

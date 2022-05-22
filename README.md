@@ -99,28 +99,31 @@ There is a very similar tutorial (Writter, a simple Twitter clone) that you can 
 - Start development server with `npm run dev`
 - Open up [http://localhost:3000](http://localhost:3000)
 - Install some more app dependencies
-  - `npm install dayjs invariant remix-auth remix-auth-form @kontenbase/sdk`
+  - `npm install @kontenbase/sdk dayjs date-fns invariant remix-auth remix-auth-form`
 - Install some more development dependencies
   - `npm install -D @types/invariant prettier`
 - Setup ESLint should already done by Remix
 - Setup Prettier config
 - TODO: Copy favicons assets and manifest
 - Know that `api` folder only for `@remix-run/vercel`
-- Setup `themes` config file
 - Setup `types`
 - Setup `components`
 - Setup `utils`
-- Setup `features`
-- Setup `lib`
+- Setup `libs`
   - `kontenbase`
+  - `clsx`
   - `dayjs`
+  - `date-fns`
 - Setup `services`
   - `session.server`: Cookie session storage with Remix Server
   - `auth.server`: Authenticator from `remix-auth` and `FormStrategy` from `remix-auth-form`
   - Implement `login` and `register` with combination of Kontenbase SDK and manual HTTP request (due to the SDK cannot handle server-side call and custom request body).
+- Setup Tailwind CSS
+  - `tailwind.config.js`
+  - `themes` config file for Vechai UI
 - Setup Remix `root` file.
 - Make sure of Remix `entry` client and server.
-- Setup `routes` and assemble the `features` and `components`
+- Setup `routes` and assemble the `components`
   - `/index`: Collection of all Posts
   - `/register`
   - `/login`
