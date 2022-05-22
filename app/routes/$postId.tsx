@@ -32,6 +32,7 @@ export const action: ActionFunction = async ({ request, params }) => {
   // Only the owner of the Post can do something
   const isOwned = user?._id === post?.createdBy?._id;
   const isMethodDelete = form.get("_method") === "delete";
+  const isMethodEdit = form.get("_method") === "edit";
 
   if (isOwned && isMethodDelete) {
     try {
@@ -42,6 +43,14 @@ export const action: ActionFunction = async ({ request, params }) => {
     } catch (error) {
       return json({ user, error }, { status: 404 });
     }
+  }
+
+  if (isOwned && isMethodEdit) {
+    return redirect(`/${params.postId}/edit`, { headers });
+
+    // const url = `${kontenbaseApiUrl}/posts/${params.postId}`;
+    // const response = await fetch(url, { headers, method: "PATCH" });
+    // const data = await response.json();
   }
 
   return null;
@@ -60,10 +69,9 @@ export default function PostId() {
       {post && !error && (
         <div className="stack max-w-lg gap-4">
           <h1>{post.title}</h1>
-          <div className="stack gap-1">
-            <p>Posted at {post.createdAt}</p>
-            <p>Posted by {post.createdBy.firstName}</p>
-          </div>
+          <p>
+            Posted by {post.createdBy.firstName} at {post.createdAt}
+          </p>
           <div>
             <p className="break-words	text-2xl">{post.content}</p>
           </div>

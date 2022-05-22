@@ -5,7 +5,7 @@ import { clsx } from "~/libs";
 interface LinkButtonProps {
   to: string;
   children: ReactNode;
-  color?: "primary";
+  color?: "primary" | "red";
   variant?: "solid" | "outline";
 }
 
