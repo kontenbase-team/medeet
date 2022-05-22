@@ -1,9 +1,9 @@
-import {
-  json,
+import type {
   LinksFunction,
   LoaderFunction,
   MetaFunction,
 } from "@remix-run/node";
+import { json } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -18,6 +18,7 @@ import { vechaiTheme } from "~/configs";
 
 import styles from "~/styles/app.css";
 import { NavigationBar } from "~/components";
+import { authenticator } from "~/services";
 
 export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: styles }];
@@ -31,7 +32,7 @@ export const meta: MetaFunction = () => ({
 });
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const user = null;
+  const user = await authenticator.isAuthenticated(request);
 
   return json({
     user,

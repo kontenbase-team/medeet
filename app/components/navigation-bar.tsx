@@ -30,7 +30,7 @@ export const NavigationBar: FunctionComponent<NavigationBarProps> = ({
 
       {user && (
         <div className="button-group">
-          <LinkButton to="/login" variant="outline">
+          <LinkButton to="/logout" variant="outline">
             Logout
           </LinkButton>
           <LinkButton to="/new">New Post</LinkButton>
